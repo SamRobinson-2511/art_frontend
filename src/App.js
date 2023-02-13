@@ -5,9 +5,12 @@ import { Routes, Route } from "react-router-dom";
 import Viewer from './Viewer'
 import Login from './Login'
 import Register from './Register'
+import Visit from './Visit'
 import About from './About'
 import Gallery from './Gallery'
 import FloorPlan from './FloorPlan'
+import Search from './Search'
+
 
 import NavBar from './NavBar';
 
@@ -43,12 +46,22 @@ function App() {
      .then( r => r.json())
      .then( viewer => localStorage.uid = viewer.uid )
 
+     const handleFetch = () => {
+      fetch('/fetch')
+      .then(r => r.json())
+      .then(art => console.log(art))
+      }
+
+  
+
   return (
     <div className='App'>
       {
         currentForm === 'login' ? <Login onFormSwitch={toggleForm}/> : <Register onFormSwitch={toggleForm}/>
       }
-    <NavBar/>
+    {/* <NavBar/> */}
+    <button onClick={handleFetch}>fetch</button>
+    <Search/>
     <Routes>
 
       <Route path='/viewer' element={<Viewer/>}/>      
