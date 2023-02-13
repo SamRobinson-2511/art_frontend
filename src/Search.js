@@ -1,18 +1,18 @@
+import {useState} from 'react'
 
-function Search({setSearch}){
+
+function Search(){
+  const [search, setSearch] = useState('')
 
   function handleSearch(e){
     e.preventDefault();
     let value = e.target.value;
     setSearch(value)
-    fetch(`/search`, {
-      method: 'GET', 
-      headers: {'Content-type': 'application/json'},
-      
-
-    })
-
+    fetch(`/search`)
+    .then(r=>r.json())
+    .then(search => console.log(search))
   }
+  
 
    
     return (
