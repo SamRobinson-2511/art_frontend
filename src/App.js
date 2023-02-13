@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Viewer from './Viewer'
 import Login from './Login'
 import Register from './Register'
-import Visit from './Visit'
+// import Visit from './Visit'
 import About from './About'
 import Gallery from './Gallery'
 import FloorPlan from './FloorPlan'
@@ -66,7 +66,7 @@ function App() {
 
       <Route path='/viewer' element={<Viewer/>}/>      
       <Route path='/about' element={<About/>}/>
-      <Route path='/visit' element={<Visit/>}/>
+      {/* <Route path='/visit' element={<Visit/>}/> */}
       <Route path='/gallery' element={<Gallery/>}/>
       <Route path='/floorplan' element={<FloorPlan/>}/>
       <Route path='/collection' element={<ArtContainer artData={artData}/>}/>
