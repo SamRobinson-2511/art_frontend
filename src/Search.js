@@ -8,7 +8,14 @@ function Search(){
     e.preventDefault();
     let value = e.target.value;
     setSearch(value)
-    fetch(`/search`)
+    fetch('/search', {
+      method: 'POST',
+      headers: {
+        'content-type':'application/json',
+        accept: 'application/json'
+      }, 
+      body: JSON.stringify({search: 'gogh'})
+    })
     .then(r=>r.json())
     .then(search => console.log(search))
   }
