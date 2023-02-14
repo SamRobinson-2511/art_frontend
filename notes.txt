@@ -1,0 +1,4 @@
+const ls = require('localstorage-ttl');
+
+ls.set(variable, value, [ttl_ms]);
+ls.get(variable);

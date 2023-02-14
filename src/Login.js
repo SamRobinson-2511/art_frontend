@@ -8,7 +8,8 @@ function Login(props){
 
     const handleLogin = (e) => {
         e.preventDefault();
-
+        let value = e.target.value;
+        
     }
     
     return (

@@ -1,12 +1,10 @@
 import React from 'react';
 
-function Footer(){
+const Footer = (props) => {
     return(
-        <div className='footer'>
-            <h2>footer</h2>
-        </div>
-
+        <footer>
+            <p>By Sam Robinson <a href='https://github.com/SamRobinson-2511?tab=repositories'></a></p>
+        </footer>
     )
 }
-
 export default Footer;
