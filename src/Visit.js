@@ -1,11 +1,13 @@
-
+import { useOutletContext,useParams } from 'react-router-dom'
 
 function Visit(){
-    return(
+    const { id } = useParams()
+    const obj = useOutletContext()
 
-        <h2>Visit</h2>
-        
+    return(
+        <h2>Visit {id}</h2>
     )
 }
+
 
 export default Visit
