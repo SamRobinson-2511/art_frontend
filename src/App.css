@@ -52,7 +52,7 @@ button {
   text-decoration: underline;
 }
 
-.header {
+.nav-bar {
   height: 60px;
   width: 100%;
   display: flex;
@@ -64,18 +64,18 @@ button {
   box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
 
-.nav-bar {
+/* .nav-bar {
   height: 60px;
   width: 100%;
   align-items: center;
-  position: relative;
+  position: absolute;
   padding: 0.5rem 0rem;
   background-color: #fff;
   color: black;
   box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23)
-}
+} */
 
-.header, .footer {
+.footer {
   background-color: #fff;
 }
 
@@ -91,4 +91,19 @@ button {
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 300px;
+}
+
+.sub-nav{
+  margin: auto;
+}
+
+nav .nav-link {
+  display: block;
+  float: left;
+  background-color: maroon;
+  border: 4px solid;
+}
+
+footer {
+  color: white;
 }

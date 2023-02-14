@@ -1,10 +1,9 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom';
 
-import Dashboard from './Dashboard'
+
 import NavBar from './NavBar'
-import Header from './Header'
 import Footer from './Footer'
 import Title from './Title'
 
@@ -41,7 +40,7 @@ function Viewer(){
 
     return(
         <div>
-            <h1>{viewer.first_name}</h1>
+            <h1>Hello, {viewer.first_name}</h1>
             <h3>Artworks</h3>
             <ul>
 
@@ -56,7 +55,6 @@ function Viewer(){
 
     return (
         <div>
-            <Header/>
             <NavBar/>
             
             <h2>Viewer Details</h2>

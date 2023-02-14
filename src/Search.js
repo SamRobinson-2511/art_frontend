@@ -3,7 +3,7 @@ import {useState} from 'react'
 
 function Search(){
   const [search, setSearch] = useState('')
-
+  
   function handleSearch(e){
     e.preventDefault();
     let value = e.target.value;
@@ -14,10 +14,11 @@ function Search(){
         'content-type':'application/json',
         accept: 'application/json'
       }, 
-      body: JSON.stringify({search: 'gogh'})
+      body: JSON.stringify({search: value})
     })
     .then(r=>r.json())
-    .then(search => console.log(search))
+    .then(search => setSearch(search))
+    console.log(search)
   }
   
 
