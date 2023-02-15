@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom';
 
 
-import NavBar from './NavBar'
+
 import Footer from './Footer'
 import Title from './Title'
 
@@ -14,9 +14,7 @@ function Viewer(){
     const [viewer, setViewer] = useState()
     const [loading, setLoading] = useState(true)
     const [errors, setErrors] = useState(false)
-    
-    // const baseUrl = 'http://localhost:3000/'
-    // const viewerUrl = baseUrl + 'viewer'
+
 
     const params = useParams()
     const {id} = params
@@ -48,20 +46,6 @@ function Viewer(){
         </div>
     )
     
-    
-    
-
-
-
-    return (
-        <div>
-            <NavBar/>
-            
-            <h2>Viewer Details</h2>
-
-            <Footer/>
-        </div>
-    )
 }
 
 export default Viewer;
