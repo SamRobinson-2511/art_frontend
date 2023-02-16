@@ -1,16 +1,24 @@
 import { useState, useEffect } from "react"
 import GalleryCard from './GalleryCard'
+import NewGalleryForm from './NewGalleryForm'
+
 
 function GalleryList(){
     const [galleries, setGalleries] = useState([])
+    const [search, setSearch] = useState('')
 
     useEffect(()=> {
-        fetch('/galleries')
+        fetch('/all_galleries')
         .then(r=>r.json())
         .then(galleries => setGalleries(galleries))
     }, [])
 
     console.log(galleries)
+
+    function addGallery(newObj){
+        setGalleries([...galleries, newObj])
+    }
+
 
     const gallery = galleries.map((g)=>{
         return (

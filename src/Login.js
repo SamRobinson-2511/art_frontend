@@ -5,19 +5,25 @@ import { useNavigate } from 'react-router-dom'
 function Login( props ) {
     const emailRef = useRef()
     const passwordRef = useRef()
-    
+    const [viewer, setViewer] = useState([])
+    const navigate = useNavigate()
 
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log()
         fetch('/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', accept: 'application/json'},
             body: JSON.stringify({email: emailRef.current.value, password: passwordRef.current.value})
         })
         .then(r=>r.json())
-        .then(console.log)
-    }
+        .then(viewer => {
+            setViewer(viewer)
+            navigate('/viewer')
+        }
+    
+    )}
+    
+    console.log(viewer.uid)
 
     
     return (
@@ -30,6 +36,7 @@ function Login( props ) {
                     <label htmlFor='email'>password</label>
                     <input ref={passwordRef} type='password' id='password' />
                     <br/>
+                    
                     <button type='submit'>Login</button>
                     <br/>
                 </form>
