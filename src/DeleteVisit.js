@@ -1,11 +1,9 @@
 
 
-function DeleteVisit(){
+function DeleteVisit({visit}){
 
     const handleDelete = (e) => {
-        fetch(`/visits/${visit.id}`, {
-            method: 'DELETE'
-        })
+        fetch(`/visits/${visit.id}/delete`, {method: 'DELETE'})
         .then(r=>r.json())
         .then(console.log('deleted'))
     }

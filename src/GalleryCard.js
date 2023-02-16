@@ -8,7 +8,7 @@ function GalleryCard({id, name, created_at, handleDeleteCard}){
     }
 
     function deleteCard(){
-        fetch(`galleries/${id}`, {method: 'DELETE'})
+        fetch(`/galleries/${id}`, {method: 'DELETE'})
         handleDeleteCard(id)
     }
 

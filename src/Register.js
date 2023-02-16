@@ -1,58 +1,64 @@
-import React, { useState } from 'react';
-
-
+import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 function Register(props){
-    const [first_name, set_first_name] = useState('')
-    const [last_name, set_last_name] = useState('')
-    const [password, setPassword] = useState('')
-    const [email, set_email] = useState('')
-    const [zip_code, set_zip_code] = useState('')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('')
-
-
+    const firstNameRef = useRef()
+    const lastNameRef = useRef()
+    const passwordRef = useRef()
+    const emailRef = useRef()
+    const zipCodeRef = useRef()
+    const passwordConfirmationRef = useRef()
+    const [viewer, setViewer] = useState([])
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch( '/register', {
+        fetch( '/signup', {
             method: 'POST', 
             headers: { 
               'Content-Type': 'application/json', 
               accept: 'application/json'
              }, 
              body: JSON.stringify({
-                first_name: set_first_name, 
-                last_name: set_last_name, 
-                email: set_email, 
-                password: setPassword, 
-                zip_code: set_zip_code,
-                passwordConfirmation: setPasswordConfirmation
+                first_name: firstNameRef.current.value, 
+                last_name: lastNameRef.current.value, 
+                email: emailRef.current.value,
+                password: passwordRef.current.value, 
+                zip_code: zipCodeRef.current.value,
+                passwordConfirmation: passwordConfirmationRef.current.value
              })
             })
              .then( r => r.json())
-             .then( viewer => localStorage.uid = viewer.uid )
-    }
+             .then( viewer => {
+                localStorage.uid = viewer.uid 
+                setViewer(viewer)
+                navigate('/viewer')
+             })
+        }
+
+        
     
     return(
         <div className='auth-form-container'>
             <form className='reg-form' onSubmit={handleSubmit}>
-                <label htmlFor='first-name'>first-name</label>
-                <input value={first_name} name='first-name' id='first-name' placeholder='first-name' onChange={(e) => set_first_name(e.target.value)}/>
 
-                <label>last-name</label>
-                <input value={last_name} name='last-name' id='last-name' placeholder='last-name' onChange={(e) => set_last_name(e.target.value)}/>
+                <label htmlFor='first-name'>first-name</label>
+                <input ref={firstNameRef} type='first-name' id='first-name' />
+
+                <label htmlFor='last-name'>last-name</label>
+                <input ref={lastNameRef} type='last-name' id='last-name' />
 
                 <label htmlFor='email'>email</label>
-                <input type='email' placeholder='what@yremail.com' id='email' name='email' value={email} onChange={(e) => set_email(e.target.value)}/>
+                <input ref={emailRef} type='email' id='email' />
                 
                 <label htmlFor='password'>password</label>
-                <input value={password} name='password' id='password' placeholder='password' onChange={(e)=>setPassword(e.target.value)}/>
+                <input ref={passwordRef} type='password' id='password' />
 
                 <label htmlFor='zip-code'>zip-code</label>
-                <input value={zip_code} name='zip-code' id='zip-code' placeholder='zip-code' onChange={(e)=>set_zip_code(e.target.value)}/>
+                <input ref={zipCodeRef} type='zip-code' id='zip-code' />
 
                 <label htmlFor='password-confirmation'>password-confirmation</label>
-                <input value={passwordConfirmation} name='password-confirmation' id='password-confirmation' placeholder='password-confirmation' onChange={(e)=>setPasswordConfirmation(e.target.value)}/>
+                <input ref={passwordConfirmationRef} type='password-confirmation' id='password-confirmation' />
                 <button type='submit'>Sign Up</button>
             </form>
             <button onClick={()=> props.onFormSwitch('login')}>Already have an account? Login</button>
