@@ -13,6 +13,9 @@ import './App.css';
 function App() {
   const [currentForm, setCurrentForm] = useState('login')
   const [viewer, setViewer] = useState({email:'', password:''})
+  
+
+  
   const [loggedIn, setLoggedIn] = useState(true)
   const navigate = useNavigate()
 
@@ -37,7 +40,6 @@ function App() {
       localStorage.removeItem('token')
       setLoggedIn(false)
       setViewer({email: '', password:''})
-      console.log(localStorage.uid)
     }
 
   return (
@@ -47,7 +49,8 @@ function App() {
         }
         <button onClick={handleLogOut}>Log Out</button>
         <Routes>
-          <Route path='/viewer' element={<ViewerProfile viewer={viewer}/>}/>
+          <Route exact path='/viewer' element={<ViewerProfile viewer={viewer}/>}/>
+          console.log(viewer)
         </Routes>
   </>
   );
