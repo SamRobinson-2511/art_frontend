@@ -1,12 +1,18 @@
 // import { de } from 'date-fns/locale';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 function Login( props ) {
     const emailRef = useRef()
     const passwordRef = useRef()
     const [viewer, setViewer] = useState([])
+    const [isAuthenticated, setIsAuthenticated] = useState(()=>JSON.parse(localStorage.getItem('auth')) || false)
+    const setAuth = (value) => {setIsAuthenticated(value)}
     const navigate = useNavigate()
+
+    useEffect(()=> {
+        localStorage.setItem('auth', JSON.stringify(isAuthenticated))
+    }, [isAuthenticated])
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -17,14 +23,11 @@ function Login( props ) {
         })
         .then(r=>r.json())
         .then(viewer => {
+            localStorage.uid = viewer.uid
             setViewer(viewer)
-            navigate('/viewer')
+            navigate(`/viewer`)
         }
-    
     )}
-    
-    console.log(viewer.uid)
-
     
     return (
         <div className='auth-form-container'>

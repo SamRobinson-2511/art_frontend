@@ -7,12 +7,24 @@ function Register(props){
     const passwordRef = useRef()
     const emailRef = useRef()
     const zipCodeRef = useRef()
-    const passwordConfirmationRef = useRef()
     const [viewer, setViewer] = useState([])
     const navigate = useNavigate()
 
+
+
+
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        // let newViewer = {
+        //     first_name: viewerData.firstName,
+        //     last_name: viewerData.lastNameRef,
+        //     email: viewerData.email,
+        //     password: viewerData.password,
+        //     zip_code: viewerData.zipCode
+        // }
+
         fetch( '/signup', {
             method: 'POST', 
             headers: { 
@@ -24,15 +36,15 @@ function Register(props){
                 last_name: lastNameRef.current.value, 
                 email: emailRef.current.value,
                 password: passwordRef.current.value, 
-                zip_code: zipCodeRef.current.value,
-                passwordConfirmation: passwordConfirmationRef.current.value
-             })
+                zip_code: zipCodeRef.current.value
+        })
+             
             })
              .then( r => r.json())
              .then( viewer => {
                 localStorage.uid = viewer.uid 
                 setViewer(viewer)
-                navigate('/viewer')
+                navigate(`/viewer`)
              })
         }
 
@@ -57,9 +69,8 @@ function Register(props){
                 <label htmlFor='zip-code'>zip-code</label>
                 <input ref={zipCodeRef} type='zip-code' id='zip-code' />
 
-                <label htmlFor='password-confirmation'>password-confirmation</label>
-                <input ref={passwordConfirmationRef} type='password-confirmation' id='password-confirmation' />
                 <button type='submit'>Sign Up</button>
+                <br /> 
             </form>
             <button onClick={()=> props.onFormSwitch('login')}>Already have an account? Login</button>
         </div>

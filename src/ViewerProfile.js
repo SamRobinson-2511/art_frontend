@@ -35,10 +35,10 @@ function ViewerProfile({viewer}){
             <Title/>
             <NavBar onChangePage={setPage}/>
             <Routes>
-                <Route path='/about' element={<About/>}/>
-                <Route path='/all_galleries' element={<GalleryList/>}/>
-                <Route path='/all_visits' element={<VisitList/>}/>
-                <Route path='/all_reviews' element={<ReviewList/>}/>
+                <Route exact path='/about' element={<About/>}/>
+                <Route exact path='/all_galleries' element={<GalleryList/>}/>
+                <Route exact path='/all_visits' element={<VisitList/>}/>
+                <Route exact path='/all_reviews' element={<ReviewList/>}/>
                 <Route path='*' element={<h1> Not Found </h1>}/>
             </Routes>
             <h1>Hello, {viewer.first_name} {viewer.last_name}</h1>    
